@@ -19,5 +19,7 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('armetiz_form_extension');
+        
+        return $treeBuilder;
     }
 }
