@@ -5,6 +5,7 @@ use Symfony\Bridge\Doctrine\Form\ChoiceList\ORMQueryBuilderLoader;
 
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\DBAL\Connection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class ORMSimpleLoader extends ORMQueryBuilderLoader {
     /**
@@ -52,6 +53,10 @@ class ORMSimpleLoader extends ORMQueryBuilderLoader {
      */
     public function getEntities()
     {
+        if (null === $this->values) {
+            $this->values = new ArrayCollection();
+        }
+        
         return $this->values;
     }
 
