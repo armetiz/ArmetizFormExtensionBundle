@@ -1,6 +1,19 @@
 ArmetizFormExtensionBundle
 ==========================
 
+This bundle add a new Form type named "entity_ajax". 
+
+It looks like the default "entity" type, but it loads only associated entities.
+
+#### Example
+A Book is link to User throught "owner" property.
+
+If you are using the "entity" type on the BookType to display the "owner" property.
+The form will load all the "users" to render the page.
+
+With the "entity_ajax" type, the form will load only the current "owner". In this case, you are free 
+to load via AJAX further "users"
+
 ## Installation
 
 Installation is a quick 2 step process:
