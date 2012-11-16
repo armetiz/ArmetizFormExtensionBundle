@@ -20,7 +20,6 @@ Installation is a quick 2 step process:
 
 1. Download ArmetizFormExtensionBundle using composer
 2. Enable the Bundle
-3. Configure your application's config.yml
 
 ### Step 1: Download ArmetizFormExtensionBundle using composer
 
