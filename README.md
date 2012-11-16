@@ -63,4 +63,4 @@ public function registerBundles()
 ## Usage
 You just have to use "entity_ajax" type instead of "entity". All [EntityType][1] options are still availabled and/or needed.
 
-[1]: http://symfony.com/doc/2.0/reference/forms/types/entity.html
+[1]: http://symfony.com/doc/2.1/reference/forms/types/entity.html
