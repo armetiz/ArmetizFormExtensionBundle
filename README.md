@@ -62,4 +62,8 @@ public function registerBundles()
 ## Usage
 You just have to use "entity_ajax" type instead of "entity". All [EntityType][1] options are still availabled and/or needed.
 
+I'm using it with [Chosen][2] & [Ajax Chosen][3].
+
 [1]: http://symfony.com/doc/2.1/reference/forms/types/entity.html
+[2]: http://harvesthq.github.com/chosen/
+[3]: https://github.com/meltingice/ajax-chosen 
