@@ -12,7 +12,7 @@ If you are using the "entity" type on the BookType to display the "owner" proper
 The form will load all the "users" to render the page.
 
 With the "entity_ajax" type, the form will load only the current "owner". In this case, you are free 
-to load via AJAX further "users"
+to load further "users" via AJAX or something else.
 
 ## Installation
 
@@ -57,6 +57,7 @@ public function registerBundles()
         new Armetiz\FormExtensionBundle\ArmetizFormExtensionBundle(),
     );
 }
+```
 
 
 ## Usage
