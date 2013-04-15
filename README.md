@@ -64,6 +64,92 @@ You just have to use "entity_ajax" type instead of "entity". All [EntityType][1]
 
 I'm using it with [Chosen][2] & [Ajax Chosen][3].
 
+``` php
+// src/Acme/TaskBundle/Controller/DefaultController.php
+namespace Acme\TaskBundle\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Acme\TaskBundle\Entity\Task;
+
+class DefaultController extends Controller
+{
+    public function newAction(Request $request)
+    {
+        $task = new Task();
+
+        $form = $this->createFormBuilder($task)
+            ->add('task', 'text')
+            ->add('dueDate', 'date')
+            ->add('owner', 'entity_ajax')
+            ->getForm();
+
+        if ($request->isMethod('POST')) {
+            $form->bind($request);
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($task);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('task_success'));
+            }
+        }
+
+        return $this->render('AcmeTaskBundle:Default:new.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
+}
+```
+
+``` js
+// part of edit.html.twig file
+var ajaxChosenSimplifier = function(selector, url, label) {
+    var options = {
+        method: 'GET',
+        url: url,
+        data: {
+            method: "search"
+        },
+        jsonTermKey: "value",
+        dataType: 'xml'
+    };
+
+    var success = function(data, textStatus, jqXHR) {
+        var jSearched = $(data);
+        var result = {};
+
+        jQuery.each(jSearched.find("item"), function(indexInArray, item) {
+            var jItem = $(item);
+            var id = jItem.find("id").text();
+            var text = jItem.find(label).text();
+
+            result[id] = text;
+        });
+
+        return result;
+    };
+
+    return $(selector).ajaxChosen(options, success);
+};
+
+ajaxChosenSimplifier("#task_owner", "http://api.domain.tld/user, "username");
+```
+
+``` xml
+<!-- data content example -->
+<response status="success" message="user.search">
+    <item key="0" id="3" type="user">
+        <id>3</id>
+        <username><![CDATA[ john ]]></username>
+    </item>
+    <item key="0" id="4" type="user">
+        <id>4</id>
+        <username><![CDATA[ iron man ]]></username>
+    </item>
+</response>
+```
+
 [1]: http://symfony.com/doc/2.1/reference/forms/types/entity.html
 [2]: http://harvesthq.github.com/chosen/
 [3]: https://github.com/meltingice/ajax-chosen 
