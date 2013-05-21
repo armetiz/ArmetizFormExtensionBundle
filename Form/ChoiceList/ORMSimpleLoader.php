@@ -1,9 +1,11 @@
 <?php
 namespace Armetiz\FormExtensionBundle\Form\ChoiceList;
 
+use Symfony\Bridge\Doctrine\Form\ChoiceList\ORMQueryBuilderLoader;
+
 use Doctrine\Common\Collections\ArrayCollection;
 
-class ORMSimpleLoader extends ORMQuertyBuilderLoader {
+class ORMSimpleLoader extends ORMQueryBuilderLoader {
     /**
      * Contains the entities directly associated to the field.
      * 
